@@ -8,27 +8,32 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import Constants.Constants;
+
 public class MainActivity extends AppCompatActivity {
     private static final int SAMPLE_RATE_HZ = 44100;
 
-    private Button mButton;
+    private Button mButton1;
+    private Button mButton2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mButton = findViewById(R.id.button);
+        mButton1 = findViewById(R.id.button1);
+        mButton2 = findViewById(R.id.button1);
 
-        mButton.setOnClickListener(new View.OnClickListener() {
+
+        mButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                playSound();
+                playSound(Constants.Pitches.A4);
             }
         });
     }
 
-    private void playSound() {
+    private void playSound(double pitch) {
         // AudioTrack definition
         int mBufferSize = AudioTrack.getMinBufferSize(SAMPLE_RATE_HZ,
                 AudioFormat.CHANNEL_OUT_MONO,
@@ -39,12 +44,10 @@ public class MainActivity extends AppCompatActivity {
                 mBufferSize, AudioTrack.MODE_STREAM);
 
         // Sine wave
-        double[] mSound = new double[44100];// 1 second? or half second if stereo buffer...
-        short[] mBuffer = new short[44100];
+        double[] mSound = new double[SAMPLE_RATE_HZ];// 1 second? or half second if stereo buffer...
+        short[] mBuffer = new short[SAMPLE_RATE_HZ];
 
-        double pitch = 880.0;
-
-        double factor = 2.0 * Math.PI * pitch/44100.0;
+        double factor = 2.0 * Math.PI * pitch/SAMPLE_RATE_HZ;
 
         float angle = 0;
 
