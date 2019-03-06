@@ -31,6 +31,15 @@ public class MainActivity extends AppCompatActivity {
                 playSound(Constants.Pitches.A4);
             }
         });
+
+        mButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                playSound(Constants.Pitches.A5);
+            }
+        });
+
+
     }
 
     private void playSound(double pitch) {
