@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         AudioTrack mAudioTrack = new AudioTrack(AudioManager.STREAM_MUSIC, SAMPLE_RATE_HZ,
                 AudioFormat.CHANNEL_OUT_MONO, AudioFormat.ENCODING_PCM_16BIT,
                 mBufferSize, AudioTrack.MODE_STREAM);
+                
 
         // Sine wave
         double[] mSound = new double[SAMPLE_RATE_HZ];// 1 second? or half second if stereo buffer...
